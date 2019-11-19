@@ -1,0 +1,84 @@
+package com.atguigu.mobileplayer2.pager;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.atguigu.mobileplayer2.R;
+import com.atguigu.mobileplayer2.base.BasePager;
+import com.atguigu.mobileplayer2.utils.Constants;
+import com.atguigu.mobileplayer2.utils.LogUtil;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+/**
+ * 作者：杨光福 on 2016/7/16 11:48
+ * 微信：yangguangfu520
+ * QQ号：541433511
+ * 作用：网络视频页面
+ */
+public class NetVideoPager extends BasePager {
+
+
+    @ViewInject(R.id.listview)
+    private ListView mListview;
+
+    @ViewInject(R.id.tv_nonet)
+    private TextView mTv_nonet;
+
+    @ViewInject(R.id.pb_loading)
+    private ProgressBar mProgressBar;
+
+
+    public NetVideoPager(Context context) {
+        super(context);
+    }
+
+    /**
+     * 初始化当前页面的控件，由父类调用
+     * @return
+     */
+    @Override
+    public View initView() {
+        View view = View.inflate(context, R.layout.netvideo_pager,null);
+        //第一个参数是：NetVideoPager.this,第二个参数：布局
+        x.view().inject(NetVideoPager.this,view);
+        return view;
+    }
+
+
+    @Override
+    public void initData() {
+        super.initData();
+        LogUtil.e("网络视频的数据被初始化了。。。");
+        //联网
+        //视频内容
+        RequestParams params = new RequestParams(Constants.NET_URL);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("联网成功=="+result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("联网失败=="+ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                LogUtil.e("onCancelled=="+cex.getMessage());
+            }
+
+            @Override
+            public void onFinished() {
+                LogUtil.e("onFinished==");
+            }
+        });
+    }
+}

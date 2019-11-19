@@ -1,0 +1,3 @@
+include ':app', ':StartAllPlayer', ':vitamio-sample', ':vitamio', ':xUtils3_sample', ':xutils', ':AgoraDemo', ':SurfaceViewDemo', ':tryEventBus_simple', ':EventBus-Sample', ':EventBus3.0_Sample', ':EventBus'
+include ':xListView'
+include ':binderService'

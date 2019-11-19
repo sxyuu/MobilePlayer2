@@ -1,0 +1,349 @@
+package com.atguigu.mobileplayer2.activity;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
+
+import com.atguigu.mobileplayer2.R;
+import com.atguigu.mobileplayer2.utils.LogUtil;
+import com.atguigu.mobileplayer2.utils.Utils;
+
+/**
+ * 作者：杨光福 on 2016/7/18 10:30
+ * 微信：yangguangfu520
+ * QQ号：541433511
+ * 作用：系统播放器
+ */
+public class SystemVideoPlayer extends Activity implements View.OnClickListener {
+    /**
+     * 视频进度的更新
+     */
+    private static final int PROGRESS = 1;
+    private VideoView videoview;
+    private Uri uri;
+    private LinearLayout llTop;
+    private TextView tvName;
+    private ImageView ivBattery;
+    private TextView tvSystemTime;
+    private Button btnVoice;
+    private SeekBar seekbarVoice;
+    private Button btnSwichPlayer;
+    private LinearLayout llBottom;
+    private TextView tvCurrentTime;
+    private SeekBar seekbarVideo;
+    private TextView tvDuration;
+    private Button btnExit;
+    private Button btnVideoPre;
+    private Button btnVideoStartPause;
+    private Button btnVideoNext;
+    private Button btnVideoSiwchScreen;
+
+    private Utils utils;
+    /**
+     * 监听电量变化的广播
+     */
+    private MyReceiver receiver;
+
+    /**
+     * Find the Views in the layout<br />
+     * <br />
+     * Auto-created on 2016-07-18 15:26:59 by Android Layout Finder
+     * (http://www.buzzingandroid.com/tools/android-layout-finder)
+     */
+    private void findViews() {
+        setContentView(R.layout.activity_system_video_player);
+        llTop = (LinearLayout)findViewById( R.id.ll_top );
+        tvName = (TextView)findViewById( R.id.tv_name );
+        ivBattery = (ImageView)findViewById( R.id.iv_battery );
+        tvSystemTime = (TextView)findViewById( R.id.tv_system_time );
+        btnVoice = (Button)findViewById( R.id.btn_voice );
+        seekbarVoice = (SeekBar)findViewById( R.id.seekbar_voice );
+        btnSwichPlayer = (Button)findViewById( R.id.btn_swich_player );
+        llBottom = (LinearLayout)findViewById( R.id.ll_bottom );
+        tvCurrentTime = (TextView)findViewById( R.id.tv_current_time );
+        seekbarVideo = (SeekBar)findViewById( R.id.seekbar_video );
+        tvDuration = (TextView)findViewById( R.id.tv_duration );
+        btnExit = (Button)findViewById( R.id.btn_exit );
+        btnVideoPre = (Button)findViewById( R.id.btn_video_pre );
+        btnVideoStartPause = (Button)findViewById( R.id.btn_video_start_pause );
+        btnVideoNext = (Button)findViewById( R.id.btn_video_next );
+        btnVideoSiwchScreen = (Button)findViewById( R.id.btn_video_siwch_screen );
+        videoview = (VideoView) findViewById(R.id.videoview);
+
+        btnVoice.setOnClickListener( this );
+        btnSwichPlayer.setOnClickListener( this );
+        btnExit.setOnClickListener( this );
+        btnVideoPre.setOnClickListener( this );
+        btnVideoStartPause.setOnClickListener( this );
+        btnVideoNext.setOnClickListener( this );
+        btnVideoSiwchScreen.setOnClickListener( this );
+    }
+
+    /**
+     * Handle button click events<br />
+     * <br />
+     * Auto-created on 2016-07-18 15:26:59 by Android Layout Finder
+     * (http://www.buzzingandroid.com/tools/android-layout-finder)
+     */
+    @Override
+    public void onClick(View v) {
+        if ( v == btnVoice ) {
+            // Handle clicks for btnVoice
+        } else if ( v == btnSwichPlayer ) {
+            // Handle clicks for btnSwichPlayer
+        } else if ( v == btnExit ) {
+            // Handle clicks for btnExit
+        } else if ( v == btnVideoPre ) {
+            // Handle clicks for btnVideoPre
+        } else if ( v == btnVideoStartPause ) {
+            // Handle clicks for btnVideoStartPause
+            if(videoview.isPlaying()){
+                //视频在播放-设置暂停
+                videoview.pause();
+                //按钮状态设置播放
+                btnVideoStartPause.setBackgroundResource(R.drawable.btn_video_start_selector);
+            }else{
+                //视频播放
+                videoview.start();
+                //按钮状态设置暂停
+                btnVideoStartPause.setBackgroundResource(R.drawable.btn_video_pause_selector);
+            }
+        } else if ( v == btnVideoNext ) {
+            // Handle clicks for btnVideoNext
+        } else if ( v == btnVideoSiwchScreen ) {
+            // Handle clicks for btnVideoSiwchScreen
+        }
+    }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case PROGRESS:
+
+                    //1.得到当前的视频播放进程
+                    int currentPosition = videoview.getCurrentPosition();
+
+                    //2.SeekBar.setProgress(当前进度);
+                    seekbarVideo.setProgress(currentPosition);
+
+
+                    //更新文本播放进度
+                    tvCurrentTime.setText(utils.stringForTime(currentPosition));
+
+
+                    //3.每秒更新一次
+                    handler.removeMessages(PROGRESS);
+                    handler.sendEmptyMessageDelayed(PROGRESS, 1000);
+
+                    break;
+            }
+        }
+    };
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);//初始化父类
+        LogUtil.e("onCreate--");
+
+        initData();
+
+        findViews();
+        setListener();
+
+        //得到播放地址
+        uri = getIntent().getData();
+        if(uri != null){
+            videoview.setVideoURI(uri);
+        }
+
+        //设置控制面板
+//        videoview.setMediaController(new MediaController(this));
+    }
+
+    private void initData() {
+        utils = new Utils();
+        //注册电量广播
+        receiver = new MyReceiver();
+        IntentFilter intentFiler = new IntentFilter();
+        //当电量变化的时候发这个广播
+        intentFiler.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(receiver, intentFiler);
+    }
+
+    class MyReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int level = intent.getIntExtra("level",0);//0~100;
+            setBattery(level);
+        }
+    }
+
+    private void setBattery(int level) {
+        if(level <= 0){
+            ivBattery.setImageResource(R.drawable.ic_battery_0);
+        }else if(level <=10){
+            ivBattery.setImageResource(R.drawable.ic_battery_10);
+        }else if(level <= 20){
+            ivBattery.setImageResource(R.drawable.ic_battery_20);
+        }else if(level <= 40){
+            ivBattery.setImageResource(R.drawable.ic_battery_40);
+        }else if(level <= 60){
+            ivBattery.setImageResource(R.drawable.ic_battery_60);
+        }else if(level <= 80){
+            ivBattery.setImageResource(R.drawable.ic_battery_80);
+        }else if(level <= 100){
+            ivBattery.setImageResource(R.drawable.ic_battery_100);
+        }else {
+            ivBattery.setImageResource(R.drawable.ic_battery_100);
+        }
+    }
+
+    private void setListener() {
+        //准备好的监听
+        videoview.setOnPreparedListener(new MyOnPreparedListener());
+
+        //播放出错了的监听
+        videoview.setOnErrorListener(new MyOnErrorListener());
+
+        //播放完成了的监听
+        videoview.setOnCompletionListener(new MyOnCompletionListener() );
+
+        //设置SeeKbar状态变化的监听
+        seekbarVideo.setOnSeekBarChangeListener(new VideoOnSeekBarChangeListener());
+    }
+
+    class VideoOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+
+        /**
+         * 当手指滑动的时候，会引起SeekBar进度变化，会回调这个方法
+         * @param seekBar
+         * @param progress
+         * @param fromUser 如果是用户引起的true,不是用户引起的false
+         */
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if(fromUser){
+                videoview.seekTo(progress);
+            }
+
+        }
+
+        /**
+         * 当手指触碰的时候回调这个方法
+         * @param seekBar
+         */
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        /**
+         * 当手指离开的时候回调这个方法
+         * @param seekBar
+         */
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    }
+
+    class MyOnPreparedListener implements MediaPlayer.OnPreparedListener {
+
+        //当底层解码准备好的时候
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            videoview.start();//开始播放
+            //1.视频的总时长，关联总长度
+            int duration =  videoview.getDuration();
+            seekbarVideo.setMax(duration);
+            tvDuration.setText(utils.stringForTime(duration));
+            //2.发消息
+            handler.sendEmptyMessage(PROGRESS);
+        }
+    }
+
+    class MyOnErrorListener implements MediaPlayer.OnErrorListener {
+
+        @Override
+        public boolean onError(MediaPlayer mp, int what, int extra) {
+            Toast.makeText(SystemVideoPlayer.this, "播放出错了哦", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    class MyOnCompletionListener implements MediaPlayer.OnCompletionListener {
+
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            Toast.makeText(SystemVideoPlayer.this, "播放完成了="+uri, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LogUtil.e("onRestart--");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogUtil.e("onStart--");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtil.e("onResume--");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LogUtil.e("onPause--");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LogUtil.e("onStop--");
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        //释放资源的时候，先释放子类，在释放父类
+        if(receiver != null){
+            unregisterReceiver(receiver);
+            receiver = null;
+        }
+        LogUtil.e("onDestroy--");
+        super.onDestroy();
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+}

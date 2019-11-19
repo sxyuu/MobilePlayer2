@@ -1,0 +1,71 @@
+package com.atguigu.mobileplayer2.utils;
+
+import com.atguigu.mobileplayer2.domain.Lyric;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+/**
+ * 作者：尚硅谷-杨光福 on 2016/7/25 10:48
+ * 微信：yangguangfu520
+ * QQ号：541433511
+ * 作用：解析歌词工具类
+ */
+public class LyricUtils {
+
+    private ArrayList<Lyric> lyrics;
+
+    /**
+     * 读取歌词文件
+     * @param file /mnt/scard/audio/beijingbeijing.txt
+     */
+    public void readLyricFile(File file){
+        if(file == null || !file.exists()){
+            //歌词文件不存在
+            lyrics = null;
+        }else{
+            //歌词文件存在
+            //1.解析歌词 一行的读取-解析
+            lyrics = new ArrayList<>();
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"GBK"));
+
+                String line = "";
+                while ((line = reader.readLine())!= null){
+                    line = parsedLyric(line);
+                }
+
+                reader.close();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            //2.排序
+
+            //3.计算每句高亮显示的时间
+        }
+
+    }
+
+    /**
+     * 解析一句歌词
+     * @param line [02:04.12][03:37.32][00:59.73]我在这里欢笑
+     * @return
+     */
+    private String parsedLyric(String line) {
+        ////indexOf第一次出现[的位置
+        int pos1 = line.indexOf("[");//0,如果没有返回-1
+
+        int pos2 = line.indexOf("]");//9,如果没有返回-1
+
+
+        return null;
+    }
+}

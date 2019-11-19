@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\binderService\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon.png",
+        "source": "F:\\Android\\MobilePlayer2\\binderService\\src\\main\\res\\drawable-hdpi\\icon.png"
+    },
+    {
+        "merged": "F:\\MobilePlayer2\\binderService\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\icon.png",
+        "source": "F:\\MobilePlayer2\\binderService\\src\\main\\res\\drawable-hdpi\\icon.png"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\MobilePlayer2\\xListView\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\xlistview_arrow.png",
+        "source": "F:\\MobilePlayer2\\xListView\\src\\main\\res\\drawable-hdpi\\xlistview_arrow.png"
+    },
+    {
+        "merged": "F:\\MobilePlayer2\\xListView\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\MobilePlayer2\\xListView\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\xListView\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\Android\\MobilePlayer2\\xListView\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\xListView\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\xlistview_arrow.png",
+        "source": "F:\\Android\\MobilePlayer2\\xListView\\src\\main\\res\\drawable-hdpi\\xlistview_arrow.png"
+    }
+]

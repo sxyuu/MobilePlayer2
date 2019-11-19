@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\MobilePlayer2\\EventBus-Sample\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\MobilePlayer2\\EventBus-Sample\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\EventBus-Sample\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\Android\\MobilePlayer2\\EventBus-Sample\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\AndroidStudioProjects\\MobilePlayer2\\EventBus-Sample\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\AndroidStudioProjects\\MobilePlayer2\\EventBus-Sample\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    }
+]

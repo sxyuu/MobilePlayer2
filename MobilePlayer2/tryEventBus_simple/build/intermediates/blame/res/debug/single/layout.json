@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\MobilePlayer2\\tryEventBus_simple\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\MobilePlayer2\\tryEventBus_simple\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "F:\\MobilePlayer2\\tryEventBus_simple\\build\\intermediates\\res\\merged\\debug\\layout\\activity_second.xml",
+        "source": "F:\\MobilePlayer2\\tryEventBus_simple\\src\\main\\res\\layout\\activity_second.xml"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\tryEventBus_simple\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\Android\\MobilePlayer2\\tryEventBus_simple\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\tryEventBus_simple\\build\\intermediates\\res\\merged\\debug\\layout\\activity_second.xml",
+        "source": "F:\\Android\\MobilePlayer2\\tryEventBus_simple\\src\\main\\res\\layout\\activity_second.xml"
+    }
+]

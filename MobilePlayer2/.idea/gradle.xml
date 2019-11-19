@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AgoraDemo" />
+            <option value="$PROJECT_DIR$/Android应用源码音乐实时跳动频谱显示Demo" />
+            <option value="$PROJECT_DIR$/EventBus" />
+            <option value="$PROJECT_DIR$/EventBus-Sample" />
+            <option value="$PROJECT_DIR$/EventBus3.0_Sample" />
+            <option value="$PROJECT_DIR$/SpeechDemo2" />
+            <option value="$PROJECT_DIR$/StartAllPlayer" />
+            <option value="$PROJECT_DIR$/SurfaceViewDemo" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/binderService" />
+            <option value="$PROJECT_DIR$/jcvideoplayer-lib" />
+            <option value="$PROJECT_DIR$/speechDemo" />
+            <option value="$PROJECT_DIR$/tryEventBus_simple" />
+            <option value="$PROJECT_DIR$/vitamio" />
+            <option value="$PROJECT_DIR$/vitamio-sample" />
+            <option value="$PROJECT_DIR$/voicedialog" />
+            <option value="$PROJECT_DIR$/xListView" />
+            <option value="$PROJECT_DIR$/xUtils3_sample" />
+            <option value="$PROJECT_DIR$/xutils" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

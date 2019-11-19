@@ -1,0 +1,51 @@
+package com.atguigu.mobileplayer2.pager;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.atguigu.mobileplayer2.R;
+import com.atguigu.mobileplayer2.base.BasePager;
+import com.atguigu.mobileplayer2.utils.LogUtil;
+
+/**
+ * 作者：杨光福 on 2016/7/16 11:48
+ * 微信：yangguangfu520
+ * QQ号：541433511
+ * 作用：本地视频页面
+ */
+public class VideoPager extends BasePager {
+
+    private ListView listview;
+    private TextView tv_nomedia;
+    private ProgressBar pb_loading;
+
+
+    public VideoPager(Context context) {
+        super(context);
+    }
+
+    /**
+     * 初始化当前页面的控件，由父类调用
+     * @return
+     */
+    @Override
+    public View initView() {
+        View view = View.inflate(context, R.layout.video_pager,null);
+        listview = (ListView) view.findViewById(R.id.listview);
+        tv_nomedia = (TextView) view.findViewById(R.id.tv_nomedia);
+        pb_loading = (ProgressBar) view.findViewById(R.id.pb_loading);
+        return view;
+    }
+
+
+    @Override
+    public void initData() {
+        super.initData();
+        LogUtil.e("本地视频的数据被初始化了。。。");
+        //联网
+        //视频内容
+    }
+}

@@ -1,0 +1,73 @@
+package com.atguigu.mobileplayer2.activity;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.atguigu.mobileplayer2.R;
+
+/**
+ * 作者：尚硅谷-杨光福 on 2016/7/25 15:19
+ * 微信：yangguangfu520
+ * QQ号：541433511
+ * 作用：搜索页面
+ */
+public class SearchActivity  extends Activity{
+
+    private EditText etInput;
+    private ImageView ivVoice;
+    private TextView tvSearch;
+    private ListView listview;
+    private ProgressBar progressBar;
+    private TextView tvNodata;
+
+    /**
+     * Find the Views in the layout<br />
+     * <br />
+     * Auto-created on 2016-07-25 15:28:45 by Android Layout Finder
+     * (http://www.buzzingandroid.com/tools/android-layout-finder)
+     */
+    private void findViews() {
+        etInput = (EditText)findViewById( R.id.et_input );
+        ivVoice = (ImageView)findViewById( R.id.iv_voice );
+        tvSearch = (TextView)findViewById( R.id.tv_search );
+        listview = (ListView)findViewById( R.id.listview );
+        progressBar = (ProgressBar)findViewById( R.id.progressBar );
+        tvNodata = (TextView)findViewById( R.id.tv_nodata );
+        MyOnClickListener myOnClickListener = new MyOnClickListener();
+        ivVoice.setOnClickListener(myOnClickListener);
+        tvSearch.setOnClickListener(myOnClickListener);
+    }
+
+    class MyOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_voice://语音输入
+                    Toast.makeText(SearchActivity.this, "语音输入", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.tv_search://搜索
+                    Toast.makeText(SearchActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+        findViews();
+    }
+
+
+}

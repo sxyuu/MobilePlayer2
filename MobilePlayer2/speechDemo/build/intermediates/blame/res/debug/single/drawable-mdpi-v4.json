@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\MobilePlayer2\\speechDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\icon.png",
+        "source": "F:\\MobilePlayer2\\speechDemo\\src\\main\\res\\drawable-mdpi\\icon.png"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\speechDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\icon.png",
+        "source": "F:\\Android\\MobilePlayer2\\speechDemo\\src\\main\\res\\drawable-mdpi\\icon.png"
+    },
+    {
+        "merged": "C:\\AndroidStudioProjects\\MobilePlayer2\\speechDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\icon.png",
+        "source": "C:\\AndroidStudioProjects\\MobilePlayer2\\speechDemo\\src\\main\\res\\drawable-mdpi\\icon.png"
+    }
+]

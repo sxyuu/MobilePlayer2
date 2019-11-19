@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\MobilePlayer2\\EventBus3.0_Sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "F:\\MobilePlayer2\\EventBus3.0_Sample\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\AndroidStudioProjects\\MobilePlayer2\\EventBus3.0_Sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\AndroidStudioProjects\\MobilePlayer2\\EventBus3.0_Sample\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Android\\MobilePlayer2\\EventBus3.0_Sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "F:\\Android\\MobilePlayer2\\EventBus3.0_Sample\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]
